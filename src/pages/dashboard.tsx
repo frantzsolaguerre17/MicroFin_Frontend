@@ -1,40 +1,45 @@
 
+import DashboardLayout from '../layouts/dashboardlayout'
+
+const statistics = [
+  { label: 'Total clients', value: '0', description: 'Clients enregistrés' },
+  { label: 'Comptes actifs', value: '0', description: 'Comptes ouverts' },
+  { label: 'Prêts en cours', value: '0', description: 'Prêts à suivre' },
+]
+
 function DashboardPage() {
   return (
-    <div className="min-h-screen bg-slate-100">
-      <header className="border-b border-slate-200 bg-white px-6 py-4">
-        <h1 className="text-xl font-bold text-slate-800">
-          MicroFin-App
-        </h1>
-      </header>
-
-      <main className="p-6">
-        <h2 className="text-2xl font-bold text-slate-800">
-          Tableau de bord
-        </h2>
-
-        <p className="mt-2 text-slate-500">
-          Bienvenue dans votre espace de gestion de microfinance.
+    <DashboardLayout title="Tableau de bord">
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-slate-800">
+          Vue d'ensemble
+        </h3>
+        <p className="mt-1 text-sm text-slate-500">
+          Voici un aperçu de votre activité.
         </p>
+      </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">Clients</p>
-            <p className="mt-2 text-3xl font-bold text-slate-800">0</p>
-          </div>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {statistics.map((statistic) => (
+          <div
+            key={statistic.label}
+            className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+          >
+            <p className="text-sm font-medium text-slate-500">
+              {statistic.label}
+            </p>
 
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">Comptes</p>
-            <p className="mt-2 text-3xl font-bold text-slate-800">0</p>
-          </div>
+            <p className="mt-3 text-3xl font-bold text-slate-800">
+              {statistic.value}
+            </p>
 
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">Prêts</p>
-            <p className="mt-2 text-3xl font-bold text-slate-800">0</p>
+            <p className="mt-2 text-sm text-slate-400">
+              {statistic.description}
+            </p>
           </div>
-        </div>
-      </main>
-    </div>
+        ))}
+      </div>
+    </DashboardLayout>
   )
 }
 
